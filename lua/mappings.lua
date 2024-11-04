@@ -19,9 +19,5 @@ vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "Go to next diagnos
 vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, { desc = "Open floating diagnostic message" })
 vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostics list" })
 
-vim.keymap.set("i", "<A-q>", "<Esc>:q<CR>")
-vim.keymap.set("i", "<A-w>", "<Esc>:w<CR>")
-vim.keymap.set("i", "<A-z>", "<Esc><C-z>")
-vim.keymap.set("n", "<A-q>", ":q<CR>")
-vim.keymap.set("n", "<A-w>", ":w<CR>")
-vim.keymap.set("n", "<A-z>", "<C-z>")
+vim.keymap.set("n", "<F2>", ":w<CR>")
+vim.keymap.set("n", "<F1>", ":q<CR>")
