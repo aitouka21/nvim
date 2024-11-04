@@ -7,7 +7,7 @@ lspconfig_defaults.capabilities = vim.tbl_deep_extend(
 	require('cmp_nvim_lsp').default_capabilities()
 )
 
-local function autoformat(client)
+local function autoformat(client, bufnr)
 	if not client.supports_method('textDocument/formatting') then
 		return
 	end
@@ -15,6 +15,11 @@ local function autoformat(client)
 		return
 	end
 	require('lsp-zero').buffer_autoformat()
+end
+
+local function toggle_diagnostic()
+	local enabled = vim.diagnostic.is_enabled()
+	vim.diagnostic.enable(not enabled)
 end
 
 -- This is where you enable features that only work
@@ -27,7 +32,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
 		if client == nil then
 			return
 		end
-		autoformat(client)
+		autoformat(client, event.buf)
 		local opts = { buffer = event.buf }
 
 		vim.keymap.set('n', 'K', '<cmd>lua vim.lsp.buf.hover()<cr>', opts)
@@ -38,7 +43,8 @@ vim.api.nvim_create_autocmd('LspAttach', {
 		vim.keymap.set('n', 'gr', '<cmd>lua vim.lsp.buf.references()<cr>', opts)
 		vim.keymap.set('n', 'gs', '<cmd>lua vim.lsp.buf.signature_help()<cr>', opts)
 		vim.keymap.set('n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<cr>', opts)
-		vim.keymap.set({ 'n', 'x' }, '<leader>fm', '<cmd>lua vim.lsp.buf.format({async = true})<cr>', opts)
+		vim.keymap.set({ 'n', 'x' }, '<leader>fm', '<cmd>lua vim.lsp.buf.format({async = false})<cr>', opts)
 		vim.keymap.set('n', '<leader>ca', '<cmd>lua vim.lsp.buf.code_action()<cr>', opts)
+		vim.keymap.set('n', '<leader>d', toggle_diagnostic, { desc = "toggle diagnostic" })
 	end,
 })

@@ -21,3 +21,5 @@ vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagn
 
 vim.keymap.set("n", "<F2>", ":w<CR>")
 vim.keymap.set("n", "<F1>", ":q<CR>")
+
+vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })

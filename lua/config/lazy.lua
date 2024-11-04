@@ -196,6 +196,10 @@ require("lazy").setup({
 
 				})
 			end
+		},
+		{
+			'stevearc/oil.nvim',
+			opts = {}
 		}
 	},
 	-- Configure any other settings here. See the documentation for more details.
