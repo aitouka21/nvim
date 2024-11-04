@@ -188,7 +188,7 @@ require("lazy").setup({
 				configs.setup({
 					ensure_installed = {
 						"c", "lua", "vim", "vimdoc", "javascript", "sql", "perl", "rust",
-						"haskell", "go"
+						"haskell", "go", "bash"
 					},
 					sysnc_install = false,
 					highlight = { enable = true },
